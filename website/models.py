@@ -1,8 +1,5 @@
-from . import create_app
-from flask_sqlalchemy import SQLAlchemy
+from . import db
 from flask_login import UserMixin;
-
-db = SQLAlchemy(create_app())
 
 class Student(db.Model, UserMixin):
     _id = db.Column(db.Integer, primary_key=True)

@@ -10,3 +10,6 @@
 
 # Contributors
 @Ntandoyenkosi360 , @Wiseman325, @msizi007
+
+# Concern
+- @msizi007 (I cannot modularize the project, maybe later, run the all.py file under website to test both login/signup)
