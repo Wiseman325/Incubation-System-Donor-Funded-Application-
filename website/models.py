@@ -1,7 +1,7 @@
 from . import db
-from flask_login import UserMixin;
+from flask_login import UserMixin
 
-class Student(db.Model, UserMixin):
+class User(db.Model, UserMixin):
     _id = db.Column(db.Integer, primary_key=True)
     idNumber = db.Column(db.Integer)
     name = db.Column(db.String(80))
@@ -22,7 +22,7 @@ class Course(db.Model):
     description = db.Column(db.String(80))
     duration = db.Column(db.Integer(80))
     cost = db.Column(db.Integer(80))
-    student_id = db.relationship('Student')
+    student_id = db.relationship('User')
 
 class Donor(db.Model):
     _id = db.Column(db.Integer, primary_key=True)
@@ -54,7 +54,7 @@ class Payment(db.Model):
 
 class FinancialAid(db.Model):
     _id = db.Column(db.Integer, primary_key=True)
-    student_id = db.Column(db.Integer, db.ForeignKey('student._id'), nullable=False)
+    student_id = db.Column(db.Integer, db.ForeignKey('user._id'), nullable=False)
     donor_id = db.Column(db.Integer, db.ForeignKey('donor._id'), nullable=False)
     application_status = db.Column(db.String(100))
     application_date = db.Column(db.Date)
