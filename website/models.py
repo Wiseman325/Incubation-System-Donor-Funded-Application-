@@ -3,53 +3,51 @@ from flask_login import UserMixin
 
 class User(db.Model, UserMixin):
     _id = db.Column(db.Integer, primary_key=True)
-    idNumber = db.Column(db.Integer)
-    name = db.Column(db.String(80))
-    surname = db.Column(db.String(80))
+    id_number = db.Column(db.String(20), nullable=False)
+    name = db.Column(db.String(80), nullable=False)
+    surname = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False) 
     race = db.Column(db.String(80))
     nationality = db.Column(db.String(80))
-    phoneNumber = db.Column(db.String(80))
-    emailAddress = db.Column(db.String(120), unique=True)
-    physicalAddress = db.Column(db.String(80))
-    highestGrade = db.Column(db.String(80))
-    financialStatus = db.Column(db.String(80))
-    course_id = db.Column(db.Integer, db.ForeignKey('Course._id'), nullable=False)
-
+    phone_number = db.Column(db.String(80))
+    email_address = db.Column(db.String(120), unique=True, nullable=False)
+    physical_address = db.Column(db.String(80))
+    highest_grade = db.Column(db.String(80))
+    financial_status = db.Column(db.String(80))
+    course_id = db.Column(db.Integer, db.ForeignKey('course._id'), nullable=False)
 
 class Course(db.Model):
     _id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
+    name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(80))
-    duration = db.Column(db.Integer(80))
-    cost = db.Column(db.Integer(80))
-    student_id = db.relationship('User')
+    duration = db.Column(db.Integer)
+    cost = db.Column(db.Integer)
+    students = db.relationship('User', backref='course', lazy=True)
 
 class Donor(db.Model):
     _id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    surname = db.Column(db.String(80))
-    email = db.Column(db.String(80))
-    phoneNumber = db.Column(db.String(80))
+    name = db.Column(db.String(80), nullable=False)
+    surname = db.Column(db.String(80), nullable=False)
+    email = db.Column(db.String(80), nullable=False)
+    phone_number = db.Column(db.String(80))
     organisation = db.Column(db.String(80))
-    amount = db.Column(db.Integer(80))
-    payment_id = db.relationship('Payment')
-    certificate_id = db.relationship('Certificate')
-
+    amount = db.Column(db.Integer)
+    payments = db.relationship('Payment', backref='donor', lazy=True)
+    certificates = db.relationship('Certificate', backref='donor', lazy=True)
 
 class Certificate(db.Model):
     _id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
-    issuedDate = db.Column(db.Date)
+    issue_date = db.Column(db.Date)
     message = db.Column(db.String(80))
-    signiture = db.Column(db.String(80))
+    signature = db.Column(db.String(80))
     donor_id = db.Column(db.Integer, db.ForeignKey('donor._id'), nullable=False)
-
 
 class Payment(db.Model):
     _id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Integer)
     date = db.Column(db.Date)
-    paymentMethod = db.Column(db.String(100))
+    payment_method = db.Column(db.String(100))
     donor_id = db.Column(db.Integer, db.ForeignKey('donor._id'), nullable=False)
 
 class FinancialAid(db.Model):
@@ -58,5 +56,3 @@ class FinancialAid(db.Model):
     donor_id = db.Column(db.Integer, db.ForeignKey('donor._id'), nullable=False)
     application_status = db.Column(db.String(100))
     application_date = db.Column(db.Date)
-
-

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% block title %}Login{% endblock %}
 
 {% block css %}
 <style>
@@ -30,7 +31,7 @@
       margin-bottom: 20px;
       font-weight: 600;
     }
-  </style>
+</style>
 {% endblock %}
 
 {% block content %}
@@ -42,7 +43,7 @@
       <form action="/login" method="POST">
         <div class="mb-3">
             <label for="usernameOrEmail" class="form-label">Username or Email</label>
-            <input type="usernameOrEmail" class="form-control" id="usernameOrEmail" name="usernameOrEmail" placeholder="Enter your email" required>
+            <input type="text" class="form-control" id="usernameOrEmail" name="usernameOrEmail" placeholder="Enter your email" required>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
@@ -54,6 +55,7 @@
                 <label class="form-check-label" for="rememberMe">Remember me</label>
             </div>
             <a href="#">Forgot password?</a>
+            <a href="signup.html">new ser Register</a>
         </div>
         {% if error %}
         <div class="alert alert-danger">{{ error }}</div>
@@ -63,4 +65,5 @@
         </div>
     </form>    
     </div>
+</div>
 {% endblock %}
