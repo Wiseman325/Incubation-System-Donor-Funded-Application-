@@ -1,98 +1,131 @@
-{% extends "base.html" %} {% block title %}Sign Up{% endblock %}
+{% extends "base.html" %}
 
-{% block content%}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Sign Up</title>
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="text-center">Sign Up</h3>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="firstName">First Name</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="firstName"
-                                        name="firstName"
-                                        placeholder="Enter first name "
-                                    />
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="lastName">Last Name</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="lastName"
-                                        name="lastName"
-                                        placeholder="Enter last name "
-                                    />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address</label>
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    id="email"
-                                    name="email"
-                                    placeholder="Enter email"
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="phoneNumber">Phone Number</label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="phoneNumber"
-                                    name="phoneNumber"
-                                    placeholder="Enter PhoneNumber "
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="password1">Password</label>
-                                <input
-                                    type="password"
-                                    class="form-control"
-                                    id="password1"
-                                    name="password1"
-                                    placeholder="Enter password"
-                                />
-                            </div>
-                            <div class="form-group">
-                                <label for="password2">Confirm Password</label>
-                                <input
-                                    type="password"
-                                    class="form-control"
-                                    id="password2"
-                                    name="password2"
-                                    placeholder="Confirm password"
-                                />
-                            </div>
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </div>
-                            <div class="text-center">
-                                <a href="/login">Already have an account? Login</a>
-                            </div>
-                        </form>
-                    </div>
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3>Sign Up</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="form-group mb-3">
+                            <label for="firstName">First Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="firstName"
+                                name="firstName"
+                                placeholder="Enter your first name"
+                                required
+                            />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="lastName">Last Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="lastName"
+                                name="lastName"
+                                placeholder="Enter your last name"
+                                required
+                            />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="email">Email Address</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                required
+                            />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="phoneNumber">Phone Number</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                placeholder="Enter your phone number"
+                                required
+                            />
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="password1">Password</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="password1"
+                                name="password1"
+                                placeholder="Create a password"
+                                required
+                            />
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="password2">Confirm Password</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="password2"
+                                name="password2"
+                                placeholder="Confirm your password"
+                                required
+                            />
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="/login" class="text-primary">Already have an account? Login</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</body>
-</html>
-{% endblock%}
+</div>
+
+<style>
+    body {
+        background-color: #f7f9fc;
+        font-family: 'Arial', sans-serif;
+    }
+    .card {
+        border-radius: 10px;
+        margin-top: 50px;
+    }
+    .card-header {
+        border-bottom: none;
+    }
+    .form-control {
+        border-radius: 5px;
+        transition: border-color 0.3s;
+    }
+    .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: none;
+    }
+    .btn-primary {
+        background-color: #0d6efd;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+    }
+    .text-primary {
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .text-primary:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}

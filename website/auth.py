@@ -6,12 +6,27 @@ from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/login', methods=['GET','POST'])
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        return "YES!"
+        data = request.form
+        email = request.form.get('email')
+        password = request.form.get('password')
 
-    return render_template('login.html')
+        user = User.query.filter((User.username == usernameOrEmail) | (User.email == usernameOrEmail)).first()
+
+        if user:
+            if check_password_hash(user.password, password):
+                flash('Logged in successfully!', category='success')
+                login_user(user, remember=True)
+                return redirect(url_for('views.home'))
+            else:
+                flash('Incorrect password, try again.', category='error')
+        else:
+            flash('Email does not exist.', category='error')
+
+    # Pass the current_user to the template, so it is always defined
+    return render_template("login.html", user=current_user)
 
 
 @auth.route('/signup', methods=['GET', 'POST'])
@@ -50,4 +65,4 @@ def sign_up():
             return redirect(url_for('views.home'))
 
 
-    return render_template("signup.html")
+    return render_template("signup.html", user=current_user)
